@@ -3,11 +3,17 @@ table {
     width: 100%;
   }
   
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
   
+  th {
+      text-align: center;
+      padding: 8px;
+    }
+    
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+    
   tr:nth-child(even){background-color: #f2f2f2}
   
   th {
@@ -17,6 +23,7 @@ table {
 
   caption {
     height: 8vh;
+    text-align: right;
   }
 
   thead {
@@ -26,3 +33,5 @@ table {
   tbody {
     height: 84vh;
   }
+
+

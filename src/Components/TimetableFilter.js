@@ -1,7 +1,16 @@
 const TimetableFilter = (props) => {
+  const filterChangeHandler = (event) => {
+    // let avalue = props.teachers.includes(event.target.value);
+    // console.log(avalue);
+    props.onFilterChange(
+      event.target.value,
+      props.teachers.includes(event.target.value)
+    );
+  };
+
   return (
     <div>
-      <select>
+      <select onChange={filterChangeHandler} value={props.selected}>
         <optgroup label="Groups">
           {props.groups.map((group) => {
             return <option key={group}>{group}</option>;

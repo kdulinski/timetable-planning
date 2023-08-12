@@ -81,6 +81,41 @@ const classHoursDummy = [
   { id: 7, hours: "13:30 - 14:15" },
 ];
 
+const lessonsDummy = [
+  {
+    day: "mon",
+    hour: 1,
+    group: "1a",
+    subject: "mathematics",
+    teacher: "AN",
+    classroom: 1,
+  },
+  {
+    day: "mon",
+    hour: 2,
+    group: "1a",
+    subject: "history",
+    teacher: "MJ",
+    classroom: 2,
+  },
+  {
+    day: "wed",
+    hour: 1,
+    group: "1b",
+    subject: "music",
+    teacher: "AM",
+    classroom: 3,
+  },
+  {
+    day: "wed",
+    hour: 2,
+    group: "1b",
+    subject: "mathematics",
+    teacher: "AN",
+    classroom: 3,
+  },
+];
+
 function App() {
   return (
     <div>
@@ -88,6 +123,7 @@ function App() {
         classHours={classHoursDummy}
         groups={groups}
         teachers={teachers}
+        lessons={lessonsDummy}
       />
     </div>
   );
