@@ -1,6 +1,8 @@
-import { useDebugValue } from "react";
-
 const TimetableLesson = (props) => {
+  const lessonClickHandler = () => {
+    props.onLessonClick(props.day, props.hour);
+  };
+
   let content;
 
   let curentLesson;
@@ -21,15 +23,6 @@ const TimetableLesson = (props) => {
     );
   }
 
-  //   curentLesson[0] !== undefined
-  //     ? (content =
-  //         curentLesson[0].subject +
-  //         " / " +
-  //         curentLesson[0].teacher +
-  //         " / " +
-  //         curentLesson[0].classroom)
-  //     : (content = "");
-
   if (curentLesson[0] !== undefined && props.isSelectedTeacher) {
     content =
       curentLesson[0].subject +
@@ -48,15 +41,7 @@ const TimetableLesson = (props) => {
     content = "";
   }
 
-  return <td>{content}</td>;
+  return <td onClick={lessonClickHandler}>{content}</td>;
 };
 
-//{
-//     day: "mon",
-//     hour: 1,
-//     group: "1a",
-//     subject: "mathematics",
-//     teacher: "AN",
-//     classroom: 1,
-//   },
 export default TimetableLesson;

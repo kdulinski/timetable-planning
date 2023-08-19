@@ -11,6 +11,7 @@ const TimetableHour = (props) => {
         lessons={props.lessons}
         selected={props.selected}
         isSelectedTeacher={props.isSelectedTeacher}
+        onLessonClick={props.onLessonClick}
       />
       <TimetableLesson
         day="tue"
@@ -18,6 +19,7 @@ const TimetableHour = (props) => {
         lessons={props.lessons}
         selected={props.selected}
         isSelectedTeacher={props.isSelectedTeacher}
+        onLessonClick={props.onLessonClick}
       />
       <TimetableLesson
         day="wed"
@@ -25,6 +27,7 @@ const TimetableHour = (props) => {
         lessons={props.lessons}
         selected={props.selected}
         isSelectedTeacher={props.isSelectedTeacher}
+        onLessonClick={props.onLessonClick}
       />
       <TimetableLesson
         day="thu"
@@ -32,6 +35,7 @@ const TimetableHour = (props) => {
         lessons={props.lessons}
         selected={props.selected}
         isSelectedTeacher={props.isSelectedTeacher}
+        onLessonClick={props.onLessonClick}
       />
       <TimetableLesson
         day="fri"
@@ -39,6 +43,7 @@ const TimetableHour = (props) => {
         lessons={props.lessons}
         selected={props.selected}
         isSelectedTeacher={props.isSelectedTeacher}
+        onLessonClick={props.onLessonClick}
       />
     </tr>
   );

@@ -1,0 +1,26 @@
+.edit-lesson__modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.edit-lesson__content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+}
+
+.edit-lesson__controls {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.edit-lesson__control label {
+    margin-right: 10px;
+}

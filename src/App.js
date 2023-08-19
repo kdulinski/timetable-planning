@@ -1,4 +1,6 @@
 import Timetable from "./Components/Timetable";
+import EditLesson from "./Components/EditLesson";
+import { useState } from "react";
 
 const groupsDummy = [
   {
@@ -117,14 +119,42 @@ const lessonsDummy = [
 ];
 
 function App() {
+  const [isEditVisible, setIsEditVisible] = useState(false);
+  const [currentLesson, setCurrentLesson] = useState();
+  const [lessons, setLessons] = useState(lessonsDummy);
+
+  const lessonClickHandler = (day, hour) => {
+    setIsEditVisible(true);
+    setCurrentLesson({ day: day, hour: hour, group: "1a" });
+  };
+
+  const modalCloseHandler = () => {
+    setIsEditVisible(false);
+  };
+
+  const addLessonHandler = (newLesson) => {
+    setLessons((prevLessons) => {
+      return [...prevLessons, newLesson];
+    });
+  };
+
   return (
     <div>
       <Timetable
         classHours={classHoursDummy}
         groups={groups}
         teachers={teachers}
-        lessons={lessonsDummy}
+        lessons={lessons}
+        onLessonClick={lessonClickHandler}
       />
+      {isEditVisible && (
+        <EditLesson
+          subjects={subjectsDummy}
+          onModalClose={modalCloseHandler}
+          currentLesson={currentLesson}
+          onAddLesson={addLessonHandler}
+        />
+      )}
     </div>
   );
 }

@@ -4,8 +4,8 @@ import TimetableHour from "./TimetableHour";
 import { useState } from "react";
 
 const Timetable = (props) => {
-  let [filterValue, setFilterValue] = useState("1b");
-  let [isTeacher, setIsTeacher] = useState(true);
+  let [filterValue, setFilterValue] = useState(props.groups[0]);
+  let [isTeacher, setIsTeacher] = useState(false);
 
   const FilterChangeHandler = (selectedValue, isSelectedTeacher) => {
     setFilterValue(selectedValue);
@@ -43,6 +43,7 @@ const Timetable = (props) => {
               lessons={props.lessons}
               selected={filterValue}
               isSelectedTeacher={isTeacher}
+              onLessonClick={props.onLessonClick}
             />
           );
         })}
