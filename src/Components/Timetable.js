@@ -1,25 +1,16 @@
 import "./Timetable.css";
 import TimetableFilter from "./TimetableFilter";
 import TimetableHour from "./TimetableHour";
-import { useState } from "react";
 
 const Timetable = (props) => {
-  let [filterValue, setFilterValue] = useState(props.groups[0]);
-  let [isTeacher, setIsTeacher] = useState(false);
-
-  const FilterChangeHandler = (selectedValue, isSelectedTeacher) => {
-    setFilterValue(selectedValue);
-    setIsTeacher(isSelectedTeacher);
-  };
-
   return (
     <table>
       <caption>
         <TimetableFilter
           groups={props.groups}
           teachers={props.teachers}
-          onFilterChange={FilterChangeHandler}
-          selected={filterValue}
+          onFilterChange={props.onFilterChange}
+          selected={props.filterValue}
         />
       </caption>
       <thead>
@@ -41,8 +32,8 @@ const Timetable = (props) => {
               id={hour.id}
               hour={hour.hours}
               lessons={props.lessons}
-              selected={filterValue}
-              isSelectedTeacher={isTeacher}
+              selected={props.filterValue}
+              isSelectedTeacher={props.isTeacher}
               onLessonClick={props.onLessonClick}
             />
           );

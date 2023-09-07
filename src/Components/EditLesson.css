@@ -12,7 +12,7 @@
     background-color: white;
     margin: 15% auto;
     padding: 20px;
-    width: 80%;
+    width: 60%;
 }
 
 .edit-lesson__controls {
@@ -23,4 +23,18 @@
 
 .edit-lesson__control label {
     margin-right: 10px;
+}
+
+.edit-lesson__actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #04AA6D;
+    color: white;
+    border: none;
 }

@@ -122,10 +122,38 @@ function App() {
   const [isEditVisible, setIsEditVisible] = useState(false);
   const [currentLesson, setCurrentLesson] = useState();
   const [lessons, setLessons] = useState(lessonsDummy);
+  const [filterValue, setFilterValue] = useState(groups[0]);
+  const [isTeacher, setIsTeacher] = useState(false);
+
+  const FilterChangeHandler = (selectedValue, isSelectedTeacher) => {
+    setFilterValue(selectedValue);
+    setIsTeacher(isSelectedTeacher);
+  };
 
   const lessonClickHandler = (day, hour) => {
     setIsEditVisible(true);
-    setCurrentLesson({ day: day, hour: hour, group: "1a" });
+    isTeacher &&
+      setCurrentLesson({
+        day: day,
+        hour: hour,
+        teacher: filterValue,
+        subject: subjectsDummy.filter((subject) =>
+          subject.teachers.includes(filterValue)
+        )[0].name,
+        group: groups[0],
+        classroom: subjectsDummy.filter((subject) =>
+          subject.teachers.includes(filterValue)
+        )[0].classrooms[0],
+      });
+    !isTeacher &&
+      setCurrentLesson({
+        day: day,
+        hour: hour,
+        group: filterValue,
+        subject: subjectsDummy[0].name,
+        teacher: teachers[0],
+        classroom: subjectsDummy[0].classrooms[0],
+      });
   };
 
   const modalCloseHandler = () => {
@@ -146,6 +174,9 @@ function App() {
         teachers={teachers}
         lessons={lessons}
         onLessonClick={lessonClickHandler}
+        onFilterChange={FilterChangeHandler}
+        filterValue={filterValue}
+        isTeacher={isTeacher}
       />
       {isEditVisible && (
         <EditLesson
@@ -153,6 +184,9 @@ function App() {
           onModalClose={modalCloseHandler}
           currentLesson={currentLesson}
           onAddLesson={addLessonHandler}
+          isTeacher={isTeacher}
+          groups={groups}
+          filterValue={filterValue}
         />
       )}
     </div>
