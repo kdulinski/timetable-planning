@@ -7,7 +7,7 @@ const TimetableFilter = (props) => {
   };
 
   return (
-    <div>
+    <>
       <select onChange={filterChangeHandler} value={props.selected}>
         <optgroup label="Groups">
           {props.groups.map((group) => {
@@ -28,7 +28,7 @@ const TimetableFilter = (props) => {
           })}
         </optgroup>
       </select>
-    </div>
+    </>
   );
 };
 

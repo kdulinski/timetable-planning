@@ -6,6 +6,7 @@ const Timetable = (props) => {
   return (
     <table>
       <caption>
+        <h1>Timetable - {props.filterValue}</h1>
         <TimetableFilter
           groups={props.groups}
           teachers={props.teachers}

@@ -50,8 +50,33 @@ table {
 
   caption {
     height: 8vh;
-    text-align: right;
   }
+  caption h1 {
+    color: #04AA6D;
+    display: inline;
+  }
+
+  caption select {
+    font-size: 1rem;
+    color: white;
+    position: absolute;
+    top: 1.5vh;
+    right: 5vw;
+    height: 5vh;
+    width: 10vw;
+    border: none;
+    background-color: #04AA6D;
+    padding: 0 5px;
+  }
+
+  caption select option {
+    color: #04AA6D;
+    background-color: white;
+  }
+
+  caption select option:hover {
+  background-color: red;
+}
 
   thead {
     height: 8vh;

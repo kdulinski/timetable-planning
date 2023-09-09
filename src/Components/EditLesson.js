@@ -1,28 +1,42 @@
 import "./EditLesson.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const EditLesson = (props) => {
   const [selectedSubject, setSelectedSubject] = useState(
     props.subjects[0].name
   );
+  const [error, setError] = useState();
 
-  const [userInput, setUserInput] = useState({
-    ...props.currentLesson,
-    // day: props.currentLesson.day,
-    // hour: props.currentLesson.hour,
-    // group: props.currentLesson.group,
-    // subject: props.currentLesson.subject,
-    // teacher: props.currentLesson.teacher,
-    // classroom: props.currentLesson.classroom,
-  });
+  useEffect(() => {
+    for (const lesson of props.lessons) {
+      if (
+        lesson.day === props.currentLesson.day &&
+        lesson.hour === props.currentLesson.hour
+      ) {
+        if (lesson.teacher === props.currentLesson.teacher) {
+          setError("The selected teacher is already assigned.");
+          break;
+        }
+        if (lesson.group === props.currentLesson.group) {
+          setError("The selected group is already assigned.");
+          break;
+        }
+        if (lesson.classroom === props.currentLesson.classroom) {
+          setError("The selected classroom is already assigned.");
+          break;
+        }
+      }
+      setError(null);
+    }
+  }, [props.currentLesson]);
 
   const subjectChangeHandler = (event) => {
     setSelectedSubject(event.target.value);
     const currentSubject = props.subjects.filter(
       (subject) => subject.name == event.target.value
     );
-    setUserInput({
-      ...userInput,
+    props.setCurrentLesson({
+      ...props.currentLesson,
       subject: event.target.value,
       teacher: currentSubject[0].teachers[0],
       classroom: currentSubject[0].classrooms[0],
@@ -31,21 +45,30 @@ const EditLesson = (props) => {
   };
 
   const teacherChangeHandler = (event) => {
-    setUserInput({ ...userInput, teacher: event.target.value });
+    props.setCurrentLesson({
+      ...props.currentLesson,
+      teacher: event.target.value,
+    });
   };
 
   const groupChangeHandler = (event) => {
-    setUserInput({ ...userInput, group: event.target.value });
+    props.setCurrentLesson({
+      ...props.currentLesson,
+      group: event.target.value,
+    });
   };
 
   const classroomChangeHandler = (event) => {
-    setUserInput({ ...userInput, classroom: event.target.value });
+    props.setCurrentLesson({
+      ...props.currentLesson,
+      classroom: event.target.value,
+    });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    props.onAddLesson(userInput);
+    props.onAddLesson(props.currentLesson);
     props.onModalClose();
   };
 
@@ -56,6 +79,7 @@ const EditLesson = (props) => {
   return (
     <div className="edit-lesson__modal">
       <div className="edit-lesson__content">
+        {error}
         <form onSubmit={submitHandler}>
           <div className="edit-lesson__controls">
             <div className="edit-lesson__control">
@@ -120,7 +144,9 @@ const EditLesson = (props) => {
             <button type="button" onClick={props.onModalClose}>
               Cancel
             </button>
-            <button type="button">Delete</button>
+            <button type="button" onClick={props.onDeleteLesson}>
+              Delete
+            </button>
             <button type="submit">Ok</button>
           </div>
         </form>

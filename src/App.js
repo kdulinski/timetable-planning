@@ -166,6 +166,28 @@ function App() {
     });
   };
 
+  const deleteLessonHandler = () => {
+    let updatedLessons;
+    if (isTeacher) {
+      updatedLessons = lessons.filter(
+        (lesson) =>
+          lesson.day !== currentLesson.day ||
+          lesson.hour !== currentLesson.hour ||
+          lesson.teacher !== filterValue
+      );
+    }
+    if (!isTeacher) {
+      updatedLessons = lessons.filter(
+        (lesson) =>
+          lesson.day !== currentLesson.day ||
+          lesson.hour !== currentLesson.hour ||
+          lesson.group !== filterValue
+      );
+    }
+    setLessons(updatedLessons);
+    setIsEditVisible(false);
+  };
+
   return (
     <div>
       <Timetable
@@ -183,10 +205,13 @@ function App() {
           subjects={subjectsDummy}
           onModalClose={modalCloseHandler}
           currentLesson={currentLesson}
+          setCurrentLesson={setCurrentLesson}
           onAddLesson={addLessonHandler}
+          onDeleteLesson={deleteLessonHandler}
           isTeacher={isTeacher}
           groups={groups}
           filterValue={filterValue}
+          lessons={lessons}
         />
       )}
     </div>
